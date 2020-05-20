@@ -12,7 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Yariel :D</h1>
-        Tamos bien
+<h1>Hello word</h1>
     </body>
 </html>
