@@ -8,7 +8,6 @@ package utils;
 public class Constantes {
 
     public final static int SERVIDORP = 1;//1 http     2 https
-
 //    public final static String IP = "localhost:8080";
 //    public final static String PREFIJO = "http://";
     public final static String IP = "pruebas.espoch.edu.ec:8181";
