@@ -103,14 +103,14 @@ function fnMigrarCodigoBiometrico() {
                     data: {opc: 'migrarCodBiometrico'},
                     contentType: "application/json ; charset=UTF-8",
                     success: function (datos) {
-                        clickMigraciones();
+                        clickMigrar();
                         TerminaLoad();
                         alertAdd();
                     }
                     ,
                     error: function (error) {
                         TerminaLoad();
-                        clickMigraciones();
+                        clickMigrar();
                     }
                 });
             },

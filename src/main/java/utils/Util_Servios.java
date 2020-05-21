@@ -78,30 +78,55 @@ public class Util_Servios {
         return strJson;
     }
 
-    public static String postServicios(String json, String prefijo, String ip, String servicio, String consumir, Integer bandera) {
+    public static String postServicios(String json, String prefijo, String ip, String servicio, String consumir, Integer servidor, Integer bandera) {
         String strJson = "";
         try {
-            URL url = new URL(prefijo + ip + "/" + servicio + consumir);
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            connection.setDoInput(true);
-            if (bandera == 1) {//cuando vienen con tildes ñ se debe usar ISO
-                connection.setRequestProperty("Content-Type", "application/json;charset=ISO-8859-1");
+            if (servidor == 1) {
+                URL url = new URL(prefijo + ip + "/" + servicio + consumir);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                if (bandera == 1) {//cuando vienen con tildes ñ se debe usar ISO
+                    connection.setRequestProperty("Content-Type", "application/json;charset=ISO-8859-1");
 
-            } else {//cuando viene con carácteres especiales se debe usar UTF-8
-                connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-            }
-            connection.setRequestProperty("Accept", "application/json");
-            try (OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream())) {
+                } else {//cuando viene con carácteres especiales se debe usar UTF-8
+                    connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                }
+                connection.setRequestProperty("Accept", "application/json");
+                try (OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream())) {
 //                json=json;
-                writer.write(json);
-                writer.flush();
+                    writer.write(json);
+                    writer.flush();
+                }
+                InputStream content = (InputStream) connection.getInputStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(content));
+                strJson = in.readLine();
+                connection.disconnect();
+            } else {
+                URL url = new URL(prefijo + ip + "/" + servicio + consumir);
+                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                if (bandera == 1) {//cuando vienen con tildes ñ se debe usar ISO
+                    connection.setRequestProperty("Content-Type", "application/json;charset=ISO-8859-1");
+
+                } else {//cuando viene con carácteres especiales se debe usar UTF-8
+                    connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                }
+                connection.setRequestProperty("Accept", "application/json");
+                try (OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream())) {
+//                json=json;
+                    writer.write(json);
+                    writer.flush();
+                }
+                InputStream content = (InputStream) connection.getInputStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(content));
+                strJson = in.readLine();
+                connection.disconnect();
             }
-            InputStream content = (InputStream) connection.getInputStream();
-            BufferedReader in = new BufferedReader(new InputStreamReader(content));
-            strJson = in.readLine();
-            connection.disconnect();
+
         } catch (NumberFormatException | IOException ex) {
             System.out.println("Fallo POST: " + ex);
             strJson = "";
