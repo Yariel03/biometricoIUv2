@@ -48,7 +48,7 @@ Total_horas_perdidas_aqui = 0-->
         if (strOpc.equals("migrarCodBiometrico")) {
             try {
 //                    //////////////////////////////////////Migrar Funcionarios//////////////////////////////////////
-                ArrayList<ClFuncionario> listaPersonal = new ArrayList<ClFuncionario>();
+//                ArrayList<ClFuncionario> listaPersonal = new ArrayList<ClFuncionario>();
                 String resultadoPersonal = "{\"respuesta\":" + sMigraciones.listarTodosPersonal() + "}";
                 
                 resultadoPersonal = resultadoPersonal.replaceAll("T00:00:00-05:00", "");

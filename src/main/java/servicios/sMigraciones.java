@@ -21,7 +21,7 @@ public class sMigraciones {
 
     public static String listarTodosPersonal() throws JSONException, IOException {
         String strJson = "";
-        strJson = getServicios(Constantes.PREFIJO, Constantes.IP, Constantes.SERVICIO_trabajador, "/wsPersonal/trabajador", Constantes.SERVIDORP,2);
+        strJson = getServicios(Constantes.PREFIJO_MIGRAR, Constantes.IP_MIGRAR, Constantes.SERVICIO_trabajador, "/wsPersonal/trabajador", Constantes.SERVIDORP,2);
         return strJson;
     }
 
@@ -30,7 +30,7 @@ public class sMigraciones {
      //<editor-fold defaultstate="collapsed" desc="Ingresar Personal">
 
     public static String ingresarPersonal( String Json) throws JSONException, IOException {
-        String strJson = postServicios(Json, Constantes.PREFIJO, Constantes.IP, Constantes.SERVICIO_biometricoV2 , "/biometricoWs/funcionarios", 1);
+        String strJson = postServicios(Json, Constantes.PREFIJO, Constantes.IP, Constantes.SERVICIO_biometricoV2 , "/biometricoWs/funcionarios", 1,2);
         return strJson;
     }
 

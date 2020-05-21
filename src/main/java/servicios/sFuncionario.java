@@ -21,7 +21,7 @@ public class sFuncionario {
     public static String funcionarioactivo(String codigo) throws JSONException {
         String strJson = "";
         try {
-            URL url = new URL(Constantes.PREFIJO + Constantes.IP + "/" + Constantes.SERVICIO_empleado + "/wstthh/Funcionario/" + codigo);
+            URL url = new URL(Constantes.PREFIJO_MIGRAR + Constantes.IP_MIGRAR + "/" + Constantes.SERVICIO_empleado + "/wstthh/Funcionario/" + codigo);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setDoOutput(true);
