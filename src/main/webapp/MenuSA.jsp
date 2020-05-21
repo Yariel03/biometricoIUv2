@@ -42,19 +42,15 @@ Total_horas_perdidas_aqui = 0-->
                 </ul>
             </li>
             
-            <li id="menu1"><a href="#" class="js-sub-menu-toggle"><i class="fa fa-clipboard fa-fw"></i><span class="text">Menu 2</span>
+            <li id="menu1"><a href="#" class="js-sub-menu-toggle"><i class="fa fa-clipboard fa-fw"></i><span class="text">MIGRACIONES</span>
                     <i id="ico1" class="toggle-icon fa fa-angle-left"></i></a>
                 <ul id="submenu1" class="sub-menu ">
                     <li style='cursor: pointer'>
-                        <a onclick="">
-                            <i class="fa fa-list-ol"></i><span class="text">Sub menu</span>
+                        <a onclick="clickMigrar()">
+                            <i class="fa fa-list-ol"></i><span class="text">Migrar todos los datos necesarios</span>
                         </a>
                     </li>
-                    <li style='cursor: pointer'>
-                        <a onclick="">
-                            <i class="fa fa-filter"></i><span class="text">Sub menu</span>
-                        </a>
-                    </li>
+                  
                 </ul>
             </li>
 

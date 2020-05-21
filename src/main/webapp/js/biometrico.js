@@ -61,11 +61,66 @@ function Menu() {
         success: function (datos) {
             $("#left-sidebar").html(datos);
             $("#contenidoDinamico").html("");
-            
+
         },
         error: function (error) {
             location.reload();
         }
+    });
+}
+function clickMigrar() {
+    $("#contenidoDinamico").html("");
+    $("#contenidoDinamico").html("<div class='loader'>Cargando...</div>");
+    VentanaPorte();
+    $.ajax({
+        url: "migraciones/AdminMigracion.jsp",
+        type: "GET",
+        data: {},
+        contentType: "application/json ; charset=UTF-8",
+        success: function (datos) {
+            $("#contenidoDinamico").html("");
+            $("#contenidoDinamico").html(datos);
+        }
+        ,
+        error: function (error) {
+            location.reload();
+        }
+    });
+    //alertPersonal("Titulo", "Usted a pasado a clicl", 4, 4000)
+}
+
+
+function fnMigrarCodigoBiometrico() {
+    alertify.confirm(
+            '<center><b>Se realizará el proceso de migración.</b><center>',
+            'Al continuar con este proceso usted <b>REALIZARÁ EL PROCESO DE MIGRACIÓN</b> de todos los usuarios con su código biométrico de manera <b>DEFINITIVA</b>, si usted está de acuerdo de clic en OK caso contrario en CANCEL… </br></br><b>Se auto cancelará en 20 segundos.<b>',
+            function () {
+                //si presiona OK
+                MuestraLoad();
+                $.ajax({
+                    url: "contMarcaciones.jsp",
+                    type: "GET",
+                    data: {opc: 'migrarCodBiometrico'},
+                    contentType: "application/json ; charset=UTF-8",
+                    success: function (datos) {
+                        clickMigraciones();
+                        TerminaLoad();
+                        alertAdd();
+                    }
+                    ,
+                    error: function (error) {
+                        TerminaLoad();
+                        clickMigraciones();
+                    }
+                });
+            },
+            function () {
+                //si presiona CANCEL
+                alertCancel();
+            }
+    ).autoCancel(20).set('oncancel', function () {
+//si pasa el tiempo 
+        alertCancel();
     });
 }
 
